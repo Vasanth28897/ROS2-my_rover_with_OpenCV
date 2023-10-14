@@ -6,7 +6,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     package_dir = get_package_share_directory('my_rover')
     urdf = os.path.join(package_dir,'rover.urdf')
-    #rviz_config_file=os.path.join(package_dir,'config.rviz')
+    rviz_config_file=os.path.join(package_dir,'config.rviz')
 
     return LaunchDescription([
         Node(
@@ -25,7 +25,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        #arguments=['-d',rviz_config_file],
+        arguments=['-d',rviz_config_file],
         output='screen'),
         
 

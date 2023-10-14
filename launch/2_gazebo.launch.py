@@ -1,8 +1,10 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch.actions import ExecuteProcess
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     package_dir = get_package_share_directory('my_rover')
@@ -15,19 +17,21 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            arguments=[urdf]),
+            parameters=[{'robot_description': urdf}]),
+            #arguments=[urdf]),
         Node(
             package='joint_state_publisher',
             executable='joint_state_publisher',
             name='joint_state_publisher',
+            output='screen',
             arguments=[urdf]),
 
-        Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d',rviz_config_file],
-        output='screen'),
+        # Node(
+        # package='rviz2',
+        # executable='rviz2',
+        # name='rviz2',
+        # arguments=['-d',rviz_config_file],
+        # output='screen'),
         
 #Gazebo parameters for simulation
         ExecuteProcess(

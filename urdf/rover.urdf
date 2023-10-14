@@ -1,9 +1,20 @@
 <?xml version="1.0" ?>
   <robot name="rover">
 
+   <link name="base_link">
+
+  </link>
+
+  <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
 
   <link name="chassis">
     <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>  
       <geometry>
           <box size="0.75 0.4 0.10"/>
       </geometry>
@@ -12,10 +23,10 @@
       </material>
     </visual>
     <inertial>
-            <mass value="2" />
-            <inertia ixx="0.283322" ixy="0.0" ixz="0.0" 
-            iyy="1.2041185" iyz="0" 
-            izz="0.9541285" />
+      <mass value="2" />
+      <inertia ixx="0.283322" ixy="0.0" ixz="0.0" 
+      iyy="1.2041185" iyz="0" 
+      izz="0.9541285" />
     </inertial>
     
     <collision>
@@ -251,7 +262,7 @@
     <origin xyz="0.2 0.0 0.10" rpy="0.0 0.0 0.0"/>
     <parent link="chassis"/>
     <child link="lidar_mount"/>
-    <axis xyz="0.0 0.0 1.0"/>   
+    <!-- <axis xyz="0.0 0.0 1.0"/>    -->
   </joint>
 
   <gazebo reference = "lidar_mount">
@@ -270,7 +281,7 @@
         <cylinder radius="0.1" length="0.1"/>
       </geometry>
       <material name="red">
-        <color rgba="1 0 0  1"/>
+        <color rgba="1 0 0 1"/>
       </material>
     </visual>
 
@@ -306,7 +317,7 @@
         <wheel_separation>0.50</wheel_separation>
         <wheel_diameter>0.3</wheel_diameter>
         <max_wheel_torque>10</max_wheel_torque>
-        <max_wheel_acceleration>1.0</max_wheel_acceleration>]
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
         <publish_odom>true</publish_odom>
         <publish_odom_tf>true</publish_odom_tf>
         <publish_wheel_tf>true</publish_wheel_tf>
